@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import * as messager from './messager';
-import { fetchInfoTest as fetchForecast, TEMP_UNITS } from './fetch_info';
+import { fetchInfo as fetchForecast, TEMP_UNITS } from './fetch_info';
 import {
   createDiv,
   createHead2,
@@ -19,15 +19,16 @@ export default class WeatherWidget {
     this.tMax = createDiv({ className: 'max-temp' });
     this.tMin = createDiv({ className: 'min-temp' });
     this.desc = createDiv({ className: 'description' });
-
-    container.append(createDiv({ className: 'weather-widget' }, [
+    this.main = createDiv({ className: 'weather-widget' }, [
       this.head,
       this.icon,
       this.temp,
       this.tMax,
       this.tMin,
       this.desc,
-    ]));
+    ]);
+
+    container.append(this.main);
 
     messager.subscribeForecast(this.id, (fcQuery, fcUnits, forecast) => {
       if (fcQuery !== query || fcUnits !== units) return;
@@ -49,6 +50,24 @@ export default class WeatherWidget {
       this.tMin.textContent = Math.round(+temp_min);
       this.tMax.textContent = Math.round(+temp_max);
       this.desc.textContent = description;
+    });
+
+    messager.subscribeFetchError('main', (error, fcQuery, fcUnits) => {
+      if (fcQuery !== query || fcUnits !== units) return;
+
+      this.tMax.className = '';
+      this.tMin.className = '';
+
+      this.head.textContent = `Unknown: ${fcQuery}`;
+      this.icon.src = 'https://media.nbcwashington.com/designimages/ots_dark_wx_107.png';
+      this.temp.textContent = '??';
+      this.tMin.textContent = '';
+      this.tMax.textContent = '';
+      this.desc.textContent = '';
+
+      setTimeout(() => {
+        this.main.remove();
+      }, 3000);
     });
 
     if (query) {

@@ -9,10 +9,13 @@ body
   color: white
   font-size: 16px
 
+#app-container
+  padding: 1rem
+
 #form-container
   display: flex
   justify-content: center
-  margin: 1rem auto
+  margin: 1rem auto 0
 
   input, select
     padding: 0.5rem
@@ -29,16 +32,23 @@ body
   input[type=submit]:hover
     filter: brightness(1.05)
 
+#error-msg
+  margin: 0 auto 1rem
+  text-align: center
+  color: red
+
 #widget-container
   display: flex
   flex-wrap: wrap
   justify-content: space-around
   align-content: space-around
-  // border: dotted thin red
-  margin: 0 1rem
+  max-width: 800px
+  margin: 0 auto
   padding: 1rem
   background-color: #7ea4b0
   border-radius: 20px
+  background: radial-gradient(ellipse at bottom, #5091DD 0%, #030617 100%)
+  box-shadow: 10px 10px 5px -6px 	#331a16
 
 .weather-widget
   width: 18rem

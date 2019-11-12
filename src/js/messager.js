@@ -1,6 +1,7 @@
 const subscribers = {};
 
 const FORECAST_AVAILABLE = Symbol('Forecast loaded');
+const FETCH_ERROR = Symbol('Error message');
 
 function subscribe(topic, id, callback) {
   if (!subscribers[topic]) {
@@ -19,6 +20,7 @@ function publish(topic, message) {
   if (subscribers[topic]) {
     const followers = subscribers[topic];
     const ids = Object.getOwnPropertySymbols(followers).concat(Object.keys(followers));
+    // debugger;
     ids.forEach((id) => {
       // For messaging debugging purposes
       // eslint-disable-next-line no-console
@@ -44,10 +46,25 @@ function subscribeForecast(id, callback) {
   );
 }
 
+function postFetchError(error, query, units) {
+  publish(FETCH_ERROR, { error, query, units });
+}
+
+function subscribeFetchError(id, callback) {
+  subscribe(
+    FETCH_ERROR,
+    id,
+    ({ error, query, units }, msgId) => callback(error, query, units, msgId),
+  );
+}
+
 export {
   unsubscribe,
 
   postForecast,
   subscribeForecast,
+
+  postFetchError,
+  subscribeFetchError,
 
 };
