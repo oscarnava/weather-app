@@ -7,6 +7,18 @@
   <title>Weather app</title>
 </head>
 <body>
-  <main>Hello world</main>
-<script type="text/javascript" src="main.fed75bbc216c9fe5b569.js"></script></body>
+  <main id="app-container">
+    <div id="form-container">
+      <input id="txt-location" type="text" placeholder="Location">
+      <select id="sel-units">
+        <option value="metric">°C</option>
+        <option value="imperial">°F</option>
+        <option value="default">°K</option>
+      </select>
+      <input id="btn-fetch" type="submit" value="Fetch forecast">
+    </div>
+    <div id="error-msg"></div>
+    <div id="widget-container"></div>
+  </main>
+<script type="text/javascript" src="main.7b66b49a6907853386c7.js"></script></body>
 </html>
