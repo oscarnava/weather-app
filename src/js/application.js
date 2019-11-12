@@ -40,5 +40,4 @@ export default function main() {
   // mainContainer.appendChild(div);
 
   const widget1 = new WeatherWidget(widgetContainer, 'Morelia, mx');
-
 }
