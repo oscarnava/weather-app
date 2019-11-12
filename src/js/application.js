@@ -1,3 +1,4 @@
+/* eslint-disable no-new */
 import { qSelect } from './globals';
 import * as messager from './messager';
 import WeatherWidget from './weather_widget';
@@ -13,7 +14,7 @@ const errorMsg = qSelect('#error-msg');
 
 function fetchForecast() {
   if (locationEdit.value) {
-    const widget1 = new WeatherWidget(widgetContainer, locationEdit.value, unitsSelector.value);
+    new WeatherWidget(widgetContainer, locationEdit.value, unitsSelector.value);
     errorMsg.textContent = '';
   } else {
     errorMsg.textContent = 'Please provide a location to search';
@@ -36,8 +37,5 @@ export default function main() {
     errorMsg.textContent = error;
   });
 
-  // const div = createDiv({ textContent: 'Loading...' });
-  // mainContainer.appendChild(div);
-
-  const widget1 = new WeatherWidget(widgetContainer, 'Morelia, mx');
+  new WeatherWidget(widgetContainer, 'Morelia, mx');
 }

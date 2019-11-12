@@ -17,7 +17,6 @@ async function fetchInfo(query, units = TEMP_UNITS[0]) {
 }
 
 async function fetchInfoTest(query, units = TEMP_UNITS[0]) {
-  console.log('Units A', units);
   messager.postForecast(query, units, JSON.parse(TEST_INFO));
 }
 
