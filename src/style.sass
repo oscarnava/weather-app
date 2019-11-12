@@ -1,7 +1,106 @@
+*
+  box-sizing: border-box
+
 body
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
   margin: 0
   padding: 0
-  background-color: #003f5c
+  background-color: #2f3774
   color: white
   font-size: 16px
+
+#form-container
+  display: flex
+  justify-content: center
+  margin: 1rem auto
+
+  input, select
+    padding: 0.5rem
+    border-radius: 0.5rem
+    margin: 0.25rem 0.25rem 0.75rem 0.25rem
+    border: none
+
+  input[type=submit]
+    background-color: #94aa2a
+    border: none
+    color: white
+    padding: 0.5rem
+
+  input[type=submit]:hover
+    filter: brightness(1.05)
+
+#widget-container
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-around
+  align-content: space-around
+  // border: dotted thin red
+  margin: 0 1rem
+  padding: 1rem
+  background-color: #7ea4b0
+  border-radius: 20px
+
+.weather-widget
+  width: 18rem
+  padding: 16px
+  margin: .5rem
+  background-color: #4c6394
+  box-shadow: 10px 10px 5px -6px 	#331a16
+  border-radius: 20px
+  display: grid
+  grid-template-areas: "head head head" "icon temp maxt" "icon temp mint" "desc desc desc"
+  grid-template-columns: 64px 1fr auto
+  grid-template-rows: auto 30px 30px auto
+  grid-gap: 4px
+
+  .header
+    grid-area: head
+    font-size: 1.5rem
+    margin: 0
+    padding: 0
+
+  .icon
+    grid-area: icon
+    width: 64px
+
+  .temp
+    grid-area: temp
+    display: flex
+    font-size: 3rem
+    padding-left: 1rem
+
+    &.metric:after, &.imperial:after, &.default:after
+      font-size: 1.2rem
+
+  .metric:after, .imperial:after, .default:after
+    font-size: .8rem
+    vertical-align: baseline
+    margin-top: 1rem
+
+  .metric:after
+    content: ' °C'
+
+  .imperial:after
+    content: ' °F'
+
+  .default:after
+    content: ' °K'
+
+  .max-temp, .min-temp
+    font-size: .8rem
+
+  .max-temp
+    grid-area: maxt
+
+    &:before
+      content: 'max '
+
+  .min-temp
+    grid-area: mint
+
+    &:before
+      content: 'min '
+
+  .description
+    grid-area: desc
+    font-variant: small-caps

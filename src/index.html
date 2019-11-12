@@ -8,7 +8,16 @@
 </head>
 <body>
   <main id="app-container">
-
+    <div id="form-container">
+      <input id="txt-location" type="text" placeholder="Location">
+      <select id="sel-units">
+        <option value="metric">°C</option>
+        <option value="imperial">°F</option>
+        <option value="default">°K</option>
+      </select>
+      <input id="btn-fetch" type="submit" value="Fetch forecast">
+    </div>
+    <div id="widget-container"></div>
   </main>
 </body>
 </html>

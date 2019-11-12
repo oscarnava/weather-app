@@ -18,10 +18,9 @@ function unsubscribe(topic, id) {
 function publish(topic, message) {
   if (subscribers[topic]) {
     const followers = subscribers[topic];
-    Object.keys(followers).forEach((id) => {
-
+    const ids = Object.getOwnPropertySymbols(followers).concat(Object.keys(followers));
+    ids.forEach((id) => {
       // For messaging debugging purposes
-
       // eslint-disable-next-line no-console
       console.log('Messager-Publish:', {
         topic: topic.description,
@@ -33,12 +32,16 @@ function publish(topic, message) {
   }
 }
 
-function postForecast(forecast) {
-  publish(FORECAST_AVAILABLE, forecast);
+function postForecast(query, units, forecast) {
+  publish(FORECAST_AVAILABLE, { query, units, forecast });
 }
 
 function subscribeForecast(id, callback) {
-  subscribe(FORECAST_AVAILABLE, id, callback);
+  subscribe(
+    FORECAST_AVAILABLE,
+    id,
+    ({ query, units, forecast }, msgId) => callback(query, units, forecast, msgId),
+  );
 }
 
 export {
