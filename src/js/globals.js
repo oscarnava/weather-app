@@ -12,7 +12,7 @@ const toggleClass = (reference, newClass, classes = []) => {
     }
   });
   element.classList.add(newClass);
-}
+};
 
 const createElement = (type, props = {}, contents) => {
   const elem = document.createElement(type);
@@ -29,7 +29,7 @@ const createElement = (type, props = {}, contents) => {
   }
 
   return elem;
-}
+};
 
 // Curried functions
 const createDiv = createElement.bind(null, 'div');
