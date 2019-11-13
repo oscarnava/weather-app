@@ -1,0 +1,116 @@
+*
+  box-sizing: border-box
+
+body
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  margin: 0
+  padding: 0
+  background-color: #2f3774
+  color: white
+  font-size: 16px
+
+#app-container
+  padding: 1rem
+
+#form-container
+  display: flex
+  justify-content: center
+  margin: 1rem auto 0
+
+  input, select
+    padding: 0.5rem
+    border-radius: 0.5rem
+    margin: 0.25rem 0.25rem 0.75rem 0.25rem
+    border: none
+
+  input[type=submit]
+    background-color: #94aa2a
+    border: none
+    color: white
+    padding: 0.5rem
+
+  input[type=submit]:hover
+    filter: brightness(1.05)
+
+#error-msg
+  margin: 0 auto 1rem
+  text-align: center
+  color: red
+
+#widget-container
+  display: flex
+  flex-wrap: wrap
+  justify-content: space-around
+  align-content: space-around
+  max-width: 800px
+  margin: 0 auto
+  padding: 1rem
+  background-color: #7ea4b0
+  border-radius: 20px
+  background: radial-gradient(ellipse at bottom, #5091DD 0%, #030617 100%)
+  box-shadow: 10px 10px 5px -6px 	#331a16
+
+.weather-widget
+  width: 18rem
+  padding: 16px
+  margin: .5rem
+  background-color: #4c6394
+  box-shadow: 10px 10px 5px -6px 	#331a16
+  border-radius: 20px
+  display: grid
+  grid-template-areas: "head head head" "icon temp maxt" "icon temp mint" "desc desc desc"
+  grid-template-columns: 64px 1fr auto
+  grid-template-rows: auto 30px 30px auto
+  grid-gap: 4px
+
+  .header
+    grid-area: head
+    font-size: 1.5rem
+    margin: 0
+    padding: 0
+
+  .icon
+    grid-area: icon
+    width: 64px
+
+  .temp
+    grid-area: temp
+    display: flex
+    font-size: 3rem
+    padding-left: 1rem
+
+    &.metric:after, &.imperial:after, &.default:after
+      font-size: 1.2rem
+
+  .metric:after, .imperial:after, .default:after
+    font-size: .8rem
+    vertical-align: baseline
+    margin-top: 1rem
+
+  .metric:after
+    content: ' °C'
+
+  .imperial:after
+    content: ' °F'
+
+  .default:after
+    content: ' °K'
+
+  .max-temp, .min-temp
+    font-size: 1rem
+
+  .max-temp
+    grid-area: maxt
+
+    &:before
+      content: '\1F53C '
+
+  .min-temp
+    grid-area: mint
+
+    &:before
+      content: '\1F53D '
+
+  .description
+    grid-area: desc
+    font-variant: small-caps
