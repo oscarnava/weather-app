@@ -12,16 +12,16 @@ const locationEdit = qSelect('#txt-location');
 const unitsSelector = qSelect('#sel-units');
 const errorMsg = qSelect('#error-msg');
 
-function fetchForecast() {
+const fetchForecast = () => {
   if (locationEdit.value) {
     new WeatherWidget(widgetContainer, locationEdit.value, unitsSelector.value);
     errorMsg.textContent = '';
   } else {
     errorMsg.textContent = 'Please provide a location to search';
   }
-}
+};
 
-export default function main() {
+const main = () => {
   fetchBtn.addEventListener('click', fetchForecast);
   locationEdit.addEventListener('keyup', (event) => {
     if (event.key !== 'Enter') return;
@@ -38,4 +38,6 @@ export default function main() {
   });
 
   new WeatherWidget(widgetContainer, 'Morelia, mx');
-}
+};
+
+export default main;

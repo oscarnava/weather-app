@@ -4,7 +4,7 @@ export const DEFAULT_PROJECT_NAME = 'default';
 const warn = console.log.bind(console);
 const qSelect = document.querySelector.bind(document);
 
-function toggleClass(reference, newClass, classes = []) {
+const toggleClass = (reference, newClass, classes = []) => {
   const element = (typeof reference === 'string') ? qSelect(reference) : reference;
   classes.forEach((cls) => {
     if (cls !== newClass) {
@@ -14,7 +14,7 @@ function toggleClass(reference, newClass, classes = []) {
   element.classList.add(newClass);
 }
 
-function createElement(type, props = {}, contents) {
+const createElement = (type, props = {}, contents) => {
   const elem = document.createElement(type);
   Object.keys(props).forEach((key) => {
     elem[key] = props[key];
@@ -31,12 +31,13 @@ function createElement(type, props = {}, contents) {
   return elem;
 }
 
-const createDiv = createElement.bind(null, 'div'); // Curry function
-const createHead1 = createElement.bind(null, 'h1'); // Curry function
-const createHead2 = createElement.bind(null, 'h2'); // Curry function
-const createHead3 = createElement.bind(null, 'h3'); // Curry function
-const createParagraph = createElement.bind(null, 'p'); // Curry function
-const createImg = createElement.bind(null, 'img'); // Curry function
+// Curried functions
+const createDiv = createElement.bind(null, 'div');
+const createHead1 = createElement.bind(null, 'h1');
+const createHead2 = createElement.bind(null, 'h2');
+const createHead3 = createElement.bind(null, 'h3');
+const createParagraph = createElement.bind(null, 'p');
+const createImg = createElement.bind(null, 'img');
 
 export {
   warn,
